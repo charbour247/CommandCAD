@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommandCAD</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1><span>🚨</span> CommandCAD</h1>
+        <div class="clock-box" id="militaryClock">00:00:00 HRS</div>
+        <button class="btn-export" id="exportBtn">Export Calls (CSV)</button>
+    </header>
+
+    <div class="dashboard-grid">
+        
+        <!-- Left Side Controls Panel -->
+        <div class="control-panels">
+            
+            <!-- Unit Management -->
+            <div class="panel">
+                <div class="panel-title">Add Unit</div>
+                <form id="addUnitForm">
+                    <input type="text" id="unitIdInput" placeholder="Unit ID (e.g. Engine 1)" required>
+                    <select id="unitTypeInput" required>
+                        <option value="Police">Police</option>
+                        <option value="Fire">Fire</option>
+                        <option value="EMS">EMS</option>
+                    </select>
+                    <button type="submit" class="btn-submit">Add Unit</button>
+                </form>
+            </div>
+
+            <!-- Call Creation -->
+            <div class="panel">
+                <div class="panel-title">Create Incident Call</div>
+                <form id="addCallForm">
+                    <input type="text" id="callTypeInput" placeholder="Incident Type (e.g. Traffic Collision)" required>
+                    <input type="text" id="callLocInput" placeholder="Location/Address" required>
+                    <select id="callPriorityInput" required>
+                        <option value="Low">Low Priority</option>
+                        <option value="Medium" selected>Medium Priority</option>
+                        <option value="High">High Priority</option>
+                    </select>
+                    <button type="submit" class="btn-submit btn-dispatch">Dispatch Call</button>
+                </form>
+            </div>
+
+            <!-- Active Units Overview -->
+            <div class="panel">
+                <div class="panel-title">Unit Status Monitor</div>
+                <div class="unit-list" id="unitList"></div>
+            </div>
+
+        </div>
+
+        <!-- Right Side: Active Incidents Console -->
+        <div class="panel">
+            <div class="panel-title">Active Calls Console</div>
+            <div class="calls-list" id="callsList"></div>
+        </div>
+
+    </div>
+
+    <dialog id="editUnitDialog" aria-labelledby="editUnitTitle">
+        <form id="editUnitForm">
+            <h2 id="editUnitTitle">Edit Unit</h2>
+            <label for="editUnitId">Unit ID</label>
+            <input id="editUnitId" type="text" required autofocus>
+            <label for="editUnitType">Unit Type</label>
+            <select id="editUnitType" required>
+                <option value="Police">Police</option>
+                <option value="Fire">Fire</option>
+                <option value="EMS">EMS</option>
+            </select>
+            <button type="submit" class="btn-submit">Save Changes</button>
+            <button type="button" class="btn-action" id="cancelUnitEdit">Cancel</button>
+        </form>
+    </dialog>
+    <script src="app.js"></script>
+</body>
+</html>
